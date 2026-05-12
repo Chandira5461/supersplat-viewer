@@ -1,0 +1,108 @@
+{
+    "version": 2,
+    "tonemapping": "none",
+    "highPrecisionRendering": false,
+    "background": {
+        "color": [0, 0, 0]
+    },
+    "postEffectSettings": {
+        "sharpness": { "enabled": false, "amount": 0 },
+        "bloom":     { "enabled": false, "intensity": 1, "blurLevel": 2 },
+        "grading":   { "enabled": false, "brightness": 0, "contrast": 1, "saturation": 1, "tint": [1, 1, 1] },
+        "vignette":  { "enabled": false, "intensity": 0.5, "inner": 0.3, "outer": 0.75, "curvature": 1 },
+        "fringing":  { "enabled": false, "intensity": 0.5 }
+    },
+    "animTracks": [],
+    "cameras": [
+        {
+            "initial": {
+                "position": [0, 1, -2],
+                "target": [0, 0, 0],
+                "fov": 60
+            }
+        }
+    ],
+    "annotations": [
+        {
+            "position": [0.0, 0.5, 0.0],
+            "title": "Master Bedroom",
+            "text": "Primary suite with attached bath, walk-in closet, and east-facing windows.",
+            "camera": {
+                "initial": {
+                    "position": [1.2, 0.8, -1.0],
+                    "target": [0, 0.5, 0],
+                    "fov": 60
+                }
+            },
+            "extras": {
+                "gsplat": {
+                    "area_sqft": 240,
+                    "images": [
+                        "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=240",
+                        "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=240",
+                        "https://images.unsplash.com/photo-1522444195799-478538b28823?w=240"
+                    ]
+                }
+            }
+        },
+        {
+            "position": [-1.0, 0.5, 0.5],
+            "title": "Kitchen",
+            "text": "Modular kitchen with island counter and built-in appliances.",
+            "camera": {
+                "initial": {
+                    "position": [-2.0, 1.0, 0.5],
+                    "target": [-1.0, 0.5, 0.5],
+                    "fov": 60
+                }
+            },
+            "extras": {
+                "gsplat": {
+                    "area_sqft": 160,
+                    "images": [
+                        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=240",
+                        "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=240"
+                    ]
+                }
+            }
+        },
+        {
+            "position": [1.5, 0.5, 0.0],
+            "title": "Living Room",
+            "text": "Open-plan living and dining with balcony access.",
+            "camera": {
+                "initial": {
+                    "position": [2.5, 1.2, 1.0],
+                    "target": [1.5, 0.5, 0.0],
+                    "fov": 65
+                }
+            },
+            "extras": {
+                "gsplat": {
+                    "area_sqft": 320,
+                    "images": [
+                        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=240"
+                    ]
+                }
+            }
+        },
+        {
+            "position": [0.0, 0.5, 1.5],
+            "title": "Guest Bath",
+            "text": "Compact powder room (no images yet — demonstrates degraded rendering).",
+            "camera": {
+                "initial": {
+                    "position": [0.0, 1.0, 2.5],
+                    "target": [0.0, 0.5, 1.5],
+                    "fov": 55
+                }
+            },
+            "extras": {
+                "gsplat": {
+                    "area_sqft": 35
+                }
+            }
+        }
+    ],
+    "startMode": "default"
+}

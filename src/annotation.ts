@@ -71,6 +71,10 @@ export class Annotation extends Script {
 
     static textDom: HTMLDivElement | null = null;
 
+    static subtitleDom: HTMLDivElement | null = null;
+
+    static galleryDom: HTMLDivElement | null = null;
+
     static layers: Layer[] = [];
 
     static mesh: Mesh | null = null;
@@ -95,6 +99,16 @@ export class Annotation extends Script {
      * @attribute
      */
     text: string;
+
+    /**
+     * @attribute
+     */
+    areaSqft?: number;
+
+    /**
+     * @attribute
+     */
+    images?: string[];
 
     /**
      * @private
@@ -128,7 +142,7 @@ export class Annotation extends Script {
                 font-size: 14px;
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
                 pointer-events: none;
-                max-width: 200px;
+                max-width: 240px;
                 word-wrap: break-word;
                 overflow-x: visible;
                 white-space: normal;
@@ -141,6 +155,35 @@ export class Annotation extends Script {
             .pc-annotation-title {
                 font-weight: bold;
                 margin-bottom: 4px;
+            }
+
+            .pc-annotation-subtitle {
+                font-size: 12px;
+                color: rgba(255, 255, 255, 0.7);
+                margin-bottom: 6px;
+            }
+
+            .pc-annotation-gallery {
+                display: flex;
+                gap: 4px;
+                margin-top: 8px;
+                overflow-x: auto;
+                max-width: 100%;
+                pointer-events: auto;
+            }
+
+            .pc-annotation-gallery a {
+                flex: 0 0 auto;
+                line-height: 0;
+            }
+
+            .pc-annotation-gallery img {
+                width: 64px;
+                height: 64px;
+                object-fit: cover;
+                border-radius: 3px;
+                display: block;
+                cursor: pointer;
             }
 
             /* Tooltip arrow */
@@ -234,9 +277,21 @@ export class Annotation extends Script {
         Annotation.titleDom.className = 'pc-annotation-title';
         Annotation.tooltipDom.appendChild(Annotation.titleDom);
 
+        // gsplat: optional subtitle for room area (sqft); rendered between title and text
+        Annotation.subtitleDom = document.createElement('div');
+        Annotation.subtitleDom.className = 'pc-annotation-subtitle';
+        Annotation.subtitleDom.style.display = 'none';
+        Annotation.tooltipDom.appendChild(Annotation.subtitleDom);
+
         Annotation.textDom = document.createElement('div');
         Annotation.textDom.className = 'pc-annotation-text';
         Annotation.tooltipDom.appendChild(Annotation.textDom);
+
+        // gsplat: optional image gallery rendered below the text
+        Annotation.galleryDom = document.createElement('div');
+        Annotation.galleryDom.className = 'pc-annotation-gallery';
+        Annotation.galleryDom.style.display = 'none';
+        Annotation.tooltipDom.appendChild(Annotation.galleryDom);
 
         Annotation.parentDom.appendChild(Annotation.tooltipDom);
     }
@@ -510,6 +565,38 @@ export class Annotation extends Script {
         Annotation.tooltipDom.style.opacity = '1';
         Annotation.titleDom.textContent = this.title;
         Annotation.textDom.textContent = this.text;
+
+        // gsplat: optional area subtitle
+        if (Annotation.subtitleDom) {
+            if (typeof this.areaSqft === 'number' && isFinite(this.areaSqft)) {
+                Annotation.subtitleDom.textContent = `${this.areaSqft} sqft`;
+                Annotation.subtitleDom.style.display = 'block';
+            } else {
+                Annotation.subtitleDom.style.display = 'none';
+            }
+        }
+
+        // gsplat: optional image gallery — rebuilt each show since the tooltip DOM is a shared singleton
+        if (Annotation.galleryDom) {
+            Annotation.galleryDom.replaceChildren();
+            if (this.images && this.images.length > 0) {
+                for (const url of this.images) {
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = '';
+                    img.loading = 'lazy';
+                    link.appendChild(img);
+                    Annotation.galleryDom.appendChild(link);
+                }
+                Annotation.galleryDom.style.display = 'flex';
+            } else {
+                Annotation.galleryDom.style.display = 'none';
+            }
+        }
 
         // Immediately update incase the camera doesn't move
         this._update();

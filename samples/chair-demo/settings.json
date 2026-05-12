@@ -1,0 +1,97 @@
+{
+    "version": 2,
+    "tonemapping": "none",
+    "highPrecisionRendering": false,
+    "background": {
+        "color": [0, 0, 0]
+    },
+    "postEffectSettings": {
+        "sharpness": { "enabled": false, "amount": 0 },
+        "bloom":     { "enabled": false, "intensity": 1, "blurLevel": 2 },
+        "grading":   { "enabled": false, "brightness": 0, "contrast": 1, "saturation": 1, "tint": [1, 1, 1] },
+        "vignette":  { "enabled": false, "intensity": 0.5, "inner": 0.3, "outer": 0.75, "curvature": 1 },
+        "fringing":  { "enabled": false, "intensity": 0.5 }
+    },
+    "animTracks": [],
+    "cameras": [
+        {
+            "initial": {
+                "position": [1.5, 0.6, -1.5],
+                "target": [0, 0.3, 0],
+                "fov": 50
+            }
+        }
+    ],
+    "annotations": [
+        {
+            "position": [0, 0.4, 0],
+            "title": "Seat",
+            "text": "Padded cushion. Fully rich annotation — exercises title + text + sqft + images.",
+            "camera": {
+                "initial": {
+                    "position": [1.0, 0.8, -1.0],
+                    "target": [0, 0.4, 0],
+                    "fov": 50
+                }
+            },
+            "extras": {
+                "gsplat": {
+                    "area_sqft": 4,
+                    "images": [
+                        "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=240",
+                        "https://images.unsplash.com/photo-1592078615290-033ee584e267?w=240"
+                    ]
+                }
+            }
+        },
+        {
+            "position": [0, 0.8, -0.2],
+            "title": "Backrest",
+            "text": "Curved support. No sqft on this one — subtitle should stay hidden.",
+            "camera": {
+                "initial": {
+                    "position": [1.2, 1.2, -1.2],
+                    "target": [0, 0.8, -0.2],
+                    "fov": 50
+                }
+            },
+            "extras": {
+                "gsplat": {
+                    "images": [
+                        "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=240"
+                    ]
+                }
+            }
+        },
+        {
+            "position": [0.3, 0.4, 0],
+            "title": "Armrest",
+            "text": "Right armrest. Sqft set but no images — gallery should stay hidden.",
+            "camera": {
+                "initial": {
+                    "position": [1.2, 0.6, -1.0],
+                    "target": [0.3, 0.4, 0],
+                    "fov": 50
+                }
+            },
+            "extras": {
+                "gsplat": {
+                    "area_sqft": 1
+                }
+            }
+        },
+        {
+            "position": [0, 0, 0],
+            "title": "Base",
+            "text": "Floor contact / base. No extras at all — exercises the pure upstream rendering path.",
+            "camera": {
+                "initial": {
+                    "position": [1.0, 0.5, -1.0],
+                    "target": [0, 0, 0],
+                    "fov": 55
+                }
+            }
+        }
+    ],
+    "startMode": "default"
+}

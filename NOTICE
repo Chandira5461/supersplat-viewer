@@ -1,0 +1,13 @@
+This product is a fork of PlayCanvas SuperSplat Viewer.
+
+Upstream:  https://github.com/playcanvas/supersplat-viewer
+Copyright: PlayCanvas Ltd.
+License:   MIT (see LICENSE)
+
+Modifications by GSplat Realestate add:
+- Rich annotations (room area, image gallery) via `extras.gsplat` on
+  annotation entries. Backward-compatible with upstream settings.json.
+- Analytics event emitter (postMessage + sendBeacon) for tour engagement
+  telemetry.
+
+All upstream copyrights and license notices are preserved.

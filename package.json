@@ -1,15 +1,16 @@
 {
-  "name": "@playcanvas/supersplat-viewer",
-  "version": "1.22.4",
-  "author": "PlayCanvas <support@playcanvas.com>",
-  "homepage": "https://github.com/playcanvas/supersplat-viewer#readme",
-  "description": "Viewer for https://superspl.at",
+  "name": "@gsplat-realestate/viewer",
+  "version": "0.2.0",
+  "author": "GSplat Realestate",
+  "description": "Embedded Gaussian-splat property tour viewer for real-estate builders. Fork of @playcanvas/supersplat-viewer.",
   "keywords": [
     "playcanvas",
     "ply",
     "gaussian",
     "splat",
-    "viewer"
+    "viewer",
+    "real-estate",
+    "property-tour"
   ],
   "license": "MIT",
   "type": "module",
@@ -28,15 +29,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/playcanvas/supersplat-viewer.git"
+    "url": "git+https://github.com/Chandira5461/supersplat-viewer.git"
   },
   "bugs": {
-    "url": "https://github.com/playcanvas/supersplat-viewer/issues"
+    "url": "https://github.com/Chandira5461/supersplat-viewer/issues"
   },
   "files": [
     "dist",
     "public",
     "LICENSE",
+    "NOTICE",
     "package.json",
     "README.md"
   ],

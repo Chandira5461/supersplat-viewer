@@ -18,6 +18,8 @@ import { App } from './app';
 import { MeshCollision, loadVoxelCollision } from './collision';
 import type { Collision } from './collision';
 import { observe } from './core/observe';
+import { Analytics } from './gsplat/analytics';
+import { initGSplatEditMode } from './gsplat/edit-mode';
 import { importSettings } from './settings';
 import type { Config, Global } from './types';
 import { initPoster, initUI } from './ui';
@@ -258,6 +260,17 @@ const main = async (canvas: HTMLCanvasElement, settingsJson: any, config: Config
 
     // Initialize user interface
     initUI(global);
+
+    // gsplat analytics: emits tour_started, hotspot_clicked, etc. via postMessage + optional beacon
+    // eslint-disable-next-line no-new
+    new Analytics(global, {
+        sceneId: new URL(location.href).searchParams.get('scene'),
+        beaconUrl: new URL(location.href).searchParams.get('beacon')
+    });
+
+    // gsplat edit mode: ?edit=1 wires a postMessage protocol so the dashboard's
+    // annotation editor route can drive annotations live (M4).
+    initGSplatEditMode(global);
 
     // Load model
     const gsplatLoad = loadGsplat(
